@@ -22,9 +22,11 @@ export default class Registration extends Component {
         console.log(`${this.state.email}, ${this.state.password}`);
         axios.post('http://localhost:3001/users/login', checkUser)
             .then(ress => {
-                localStorage.setItem('token', ress.data.token);
+                const tokenSet = localStorage.setItem('token', ress.data.token);
+                const idSet = localStorage.setItem('id', ress.data.find);
                 const token = localStorage.getItem('token');
-                console.log(`Success --> ${token}`);
+                const id = localStorage.getItem('id');
+                console.log(`Success --> ${token}, ${id}`);
             })
             .catch(err => console.log(`Error --> ${err}`));
 
